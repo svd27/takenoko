@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = "1.1.2-2"
+    ext.kotlin_version = "1.2.30"
 
     repositories {
         mavenCentral()
@@ -9,9 +9,9 @@ buildscript {
     }
 }
 
-allprojects {
+subprojects {
     group 'org.yanex.takenoko'
-    version '0.1-SNAPSHOT'
+    version '0.1.1'
 
     repositories {
         mavenCentral()
