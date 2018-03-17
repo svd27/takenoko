@@ -1,0 +1,7 @@
+package test
+
+fun Byte.some(): Char
+
+class C(c: Double, val d: Double?) {
+    inline override fun other(x: Double): Char?
+}

@@ -24,4 +24,33 @@ class ExtendsImplements : AbstractPrettyPrintOutputTest() {
             }
         }
     }
+
+    @Test fun overrideProperty() = testFile {
+        classDeclaration("C") {
+            primaryConstructor {
+                param("c", KoType.DOUBLE, OVERRIDE)
+                property("d", KoType.DOUBLE.nullable, VAL)
+            }
+        }
+    }
+
+    @Test fun overrideFun() = testFile {
+        function("some", OVERRIDE) {
+            receiverType(KoType.BYTE)
+            returnType(KoType.CHAR)
+        }
+
+
+        classDeclaration("C") {
+            primaryConstructor {
+                param("c", KoType.DOUBLE, OVERRIDE)
+                property("d", KoType.DOUBLE.nullable, VAL)
+            }
+
+            function("other", OVERRIDE + INLINE) {
+                param("x", KoType.DOUBLE, OVERRIDE)
+                returnType(KoType.CHAR.nullable)
+            }
+        }
+    }
 }

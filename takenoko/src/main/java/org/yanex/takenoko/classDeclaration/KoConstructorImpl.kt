@@ -13,4 +13,7 @@ internal class KoConstructorImpl(
     }
 
     override fun <T> accept(visitor: KoElementVisitor<T>) = visitor.visitConstructor(this)
+
+    override fun property(name: String, type: KoType, modifiers: KoModifierList, initializer: Any?, block: KoVariable.() -> Unit) =
+            param(name, type, modifiers, initializer, block)
 }

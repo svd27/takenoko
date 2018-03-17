@@ -160,6 +160,7 @@ class KoAnnotatedType(
 }
 
 class KoNullableType(val type: KoType) : KoType
+val KoType.nullable : KoNullableType get() = KoNullableType(this)
 
 class KoClassType(
         val name: String,

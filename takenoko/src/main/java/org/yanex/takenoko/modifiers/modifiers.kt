@@ -10,6 +10,7 @@ val SEALED: KoModifier = KoModifierImpl("sealed")
 val OPEN: KoModifier = KoModifierImpl("open")
 val ABSTRACT: KoModifier = KoModifierImpl("abstract")
 
+val OVERRIDE: KoModifier = KoSyntheticModifierImpl("override")
 val VAL: KoModifier = KoSyntheticModifierImpl("val")
 val VAR: KoModifier = KoSyntheticModifierImpl("val")
 val VARARG: KoModifier = KoSyntheticModifierImpl("vararg")

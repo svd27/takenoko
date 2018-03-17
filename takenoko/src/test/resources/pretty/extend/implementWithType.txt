@@ -1,0 +1,7 @@
+package test
+
+import java.util.ArrayList
+
+interface A<T>
+
+class AImpl : ArrayList<String>(), A<Double>

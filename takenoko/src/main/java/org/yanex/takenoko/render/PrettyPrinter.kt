@@ -46,6 +46,10 @@ class PrettyPrinter(val configuration: PrettyPrinterConfiguration) : KoElementVi
         e.annotations.render(this)
         e.modifiers.render(this)
 
+        if(e.modifiers[OVERRIDE] && e !is KoConstructor && e.receiverType==null) {
+            this.append("override ")
+        }
+
         if (e !is KoConstructor) {
             append("fun ")
         }
@@ -87,6 +91,9 @@ class PrettyPrinter(val configuration: PrettyPrinterConfiguration) : KoElementVi
         e.annotations.render(this, singleLine = e.isParameter)
         e.modifiers.render(this)
 
+        if(e.modifiers[OVERRIDE] && (e.modifiers[VAL] || e.modifiers[VAR])) {
+            append("override ")
+        }
         if (e.parent is KoFunction) {
             if (e.modifiers[VARARG]) append("vararg ")
             if (e.modifiers[VAR]) append("var ")
