@@ -121,6 +121,9 @@ interface KoType {
     }
 }
 
+fun parseType(s:String) : KoType = KoType.Companion.parseType(s)
+fun parseType(javaClass: Class<*>) : KoType = KoType.Companion.parseType(javaClass)
+
 class KoTypeWithVariance(val type: KoType, val variance: KoTypeVariance) : KoType
 
 enum class KoTypeVariance(val keyword: String) {
