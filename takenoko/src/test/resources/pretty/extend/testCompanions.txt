@@ -1,7 +1,11 @@
 package test
 
+import java.util.List
+
 class B {
     companion object  : Tock<Int>(12) {
         val n: Int = 0
     }
+
+    internal companion object ACompanion : List<String>()
 }

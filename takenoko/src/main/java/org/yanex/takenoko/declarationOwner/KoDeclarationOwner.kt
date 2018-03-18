@@ -19,6 +19,10 @@ interface KoDeclarationOwner : KoElement {
 
     fun objectDeclaration(name: String, modifiers: KoModifierList, block: KoClass.() -> Unit = {})
 
+    fun companionDeclaration(name: String, block: KoClass.() -> Unit = {})
+
+    fun companionDeclaration(name: String, modifiers: KoModifierList, block: KoClass.() -> Unit = {})
+
     fun enum(name: String, block: KoClass.() -> Unit = {})
 
     fun enum(name: String, modifiers: KoModifierList, block: KoClass.() -> Unit = {})

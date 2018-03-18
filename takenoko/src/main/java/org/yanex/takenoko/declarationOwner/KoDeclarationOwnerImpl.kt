@@ -42,6 +42,14 @@ internal class KoDeclarationOwnerImpl(
         this@KoDeclarationOwnerImpl.declarations += KoClassImpl(this, name, modifiers + ENUM).apply(block)
     }
 
+    override fun companionDeclaration(name: String, block: KoClass.() -> Unit) {
+        declarations += KoClassImpl(this, name, COMPANION).apply(block)
+    }
+
+    override fun companionDeclaration(name: String, modifiers: KoModifierList, block: KoClass.() -> Unit) {
+        declarations += KoClassImpl(this, name, modifiers+COMPANION).apply(block)
+    }
+
     override fun function(name: String, block: KoFunction.() -> Unit) {
         this@KoDeclarationOwnerImpl.declarations += KoFunctionImpl(this, name).apply(block)
     }

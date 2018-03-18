@@ -66,12 +66,16 @@ class ExtendsImplements : AbstractPrettyPrintOutputTest() {
     }
 
     @Test fun testCompanions() = testFile {
+
         classDeclaration("B") {
-            classDeclaration("", COMPANION) {
+            companionDeclaration("") {
                 property("n", KoType.INT, VAL) {
                     initializer(0)
                 }
                 extends(parseType("Tock<Int>"), 12)
+            }
+            companionDeclaration("ACompanion", INTERNAL) {
+                extends(parseType("java.util.List<String>"))
             }
         }
     }
