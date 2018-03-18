@@ -67,7 +67,7 @@ class ExtendsImplements : AbstractPrettyPrintOutputTest() {
 
     @Test fun testCompanions() = testFile {
 
-        classDeclaration("Bx") {
+        classDeclaration("B") {
             companionDeclaration("") {
                 property("n", KoType.INT, VAL) {
                     initializer(0)
