@@ -47,6 +47,8 @@ interface KoType {
         val STRING = KoClassType("kotlin.String")
         val CHAR_SEQUENCE = KoClassType("kotlin.CharSequence")
 
+        val TYPEARG_STAR = KoClassType("*")
+
         private fun mapBuiltinType(fqName: String): String = MAPPINGS[fqName] ?: fqName
 
         fun parseType(type: String): KoType {
@@ -115,7 +117,10 @@ interface KoType {
                 }
             }
 
-            result += parseType(rawParams.substring(lastIndex, rawParams.length))
+            val type = rawParams.substring(lastIndex, rawParams.length)
+            if(type!="*")
+              result += parseType(type)
+            else result += KoType.TYPEARG_STAR
             return result
         }
     }

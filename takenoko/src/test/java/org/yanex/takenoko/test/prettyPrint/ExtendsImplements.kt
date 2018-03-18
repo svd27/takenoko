@@ -67,7 +67,7 @@ class ExtendsImplements : AbstractPrettyPrintOutputTest() {
 
     @Test fun testCompanions() = testFile {
 
-        classDeclaration("B") {
+        classDeclaration("Bx") {
             companionDeclaration("") {
                 property("n", KoType.INT, VAL) {
                     initializer(0)
@@ -77,6 +77,15 @@ class ExtendsImplements : AbstractPrettyPrintOutputTest() {
             companionDeclaration("ACompanion", INTERNAL) {
                 extends(parseType("java.util.List<String>"))
             }
+        }
+    }
+
+    @Test fun testComplexTypeArgs() = testFile {
+        classDeclaration("Z") {
+            extends(parseType("List<Map<String,Int>>"))
+        }
+        classDeclaration("W") {
+            extends(parseType("List<List<*>>"))
         }
     }
 }

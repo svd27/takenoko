@@ -1,0 +1,5 @@
+package test
+
+class Z : List<Map<String, Int>>()
+
+class W : List<List<*>>()

@@ -10,6 +10,7 @@ class KoImportListImpl : KoImportList {
     override val imports = mutableMapOf<String, String>()
 
     private fun import(name: String): String {
+        if(name=="*") return name
         val simpleName = name.split('.')
                 .takeLastWhile { it.firstOrNull()?.isUpperCase() ?: false }
                 .joinToString(".")
