@@ -1,6 +1,9 @@
 package test
 
-fun Byte.some(): Char
+fun Byte.some(s: String = abc): String = run {
+    val z = "xyz"
+    s + z
+}
 
 class C(c: Double, val d: Double?) {
     inline override fun other(x: Double): Char?

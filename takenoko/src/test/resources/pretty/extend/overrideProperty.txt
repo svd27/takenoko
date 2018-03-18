@@ -1,3 +1,5 @@
 package test
 
-class C(c: Double, val d: Double?)
+class C(c: Double, val d: Double?) {
+    override val e: Boolean = true
+}

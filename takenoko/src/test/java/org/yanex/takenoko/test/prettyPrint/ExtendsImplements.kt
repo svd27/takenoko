@@ -31,13 +31,24 @@ class ExtendsImplements : AbstractPrettyPrintOutputTest() {
                 param("c", KoType.DOUBLE, OVERRIDE)
                 property("d", KoType.DOUBLE.nullable, VAL)
             }
+            property("e", KoType.BOOLEAN, OVERRIDE+VAL) {
+                initializer(true)
+            }
         }
     }
 
     @Test fun overrideFun() = testFile {
         function("some", OVERRIDE) {
             receiverType(KoType.BYTE)
-            returnType(KoType.CHAR)
+            returnType(KoType.STRING)
+            param("s", KoType.STRING, "abc")
+            body(true) {
+                append(
+                        """|run {
+                           |    val z = "xyz"
+                           |    s + z
+                           |}""".trimMargin())
+            }
         }
 
 
@@ -50,6 +61,17 @@ class ExtendsImplements : AbstractPrettyPrintOutputTest() {
             function("other", OVERRIDE + INLINE) {
                 param("x", KoType.DOUBLE, OVERRIDE)
                 returnType(KoType.CHAR.nullable)
+            }
+        }
+    }
+
+    @Test fun testCompanions() = testFile {
+        classDeclaration("B") {
+            classDeclaration("", COMPANION) {
+                property("n", KoType.INT, VAL) {
+                    initializer(0)
+                }
+                extends(parseType("Tock<Int>"), 12)
             }
         }
     }

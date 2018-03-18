@@ -1,8 +1,8 @@
 package org.yanex.takenoko
 
-import org.yanex.takenoko.KoTypeVariance.NONE
 import org.yanex.takenoko.KoElementWithComments.Comment.CommentType.KDOC
 import org.yanex.takenoko.KoElementWithComments.Comment.CommentType.NORMAL
+import org.yanex.takenoko.KoTypeVariance.NONE
 
 class PrettyPrinterConfiguration(val identation: String = "    ")
 
@@ -145,14 +145,15 @@ class PrettyPrinter(val configuration: PrettyPrinterConfiguration) : KoElementVi
         e.annotations.render(this)
         e.modifiers.render(this)
 
+        if(e.modifiers[COMPANION]) append("companion ")
         append(when {
-            e.modifiers[OBJECT] -> "object"
+            e.modifiers[OBJECT] || e.modifiers[COMPANION] -> "object"
             e.modifiers[INTERFACE] -> "interface"
             e.modifiers[ENUM] -> "enum class"
             else -> "class"
         }).append(' ')
 
-        renderName(e.name)
+        if(e.modifiers[COMPANION]) renderCompName(e.name) else renderName(e.name)
         e.typeParameters.render(this)
 
         val (primaryConstructors, declarations) = e.declarations.partition { it is KoConstructor && it.isPrimary }
@@ -233,8 +234,13 @@ class PrettyPrinter(val configuration: PrettyPrinterConfiguration) : KoElementVi
     }
 
     private fun StringBuilder.renderName(name: String): StringBuilder {
-        assert(name.isNotEmpty()) { "Declaration name should not be empty" }
+        assert(name.isNotEmpty() ) { "Declaration name should not be empty" }
 
+        return renderCompName(name)
+    }
+
+    private fun StringBuilder.renderCompName(name: String): StringBuilder {
+        if(name.isEmpty()) return this
         if ('$' !in name && name[0].isJavaIdentifierStart() && name.drop(1).all { it.isJavaIdentifierPart() }) {
             append(name)
         } else {

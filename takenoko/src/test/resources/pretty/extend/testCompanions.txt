@@ -1,0 +1,5 @@
+package test
+
+class B {
+    companion object (n: Int) : Tock<Int>(n)
+}
