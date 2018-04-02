@@ -10,6 +10,7 @@ interface KoType {
         private val NAMED_TYPE_REGEXP = "^([^:()\\-_<>]+)\\s*:\\s*(.*)$".toRegex()
 
         private val MAPPINGS = mapOf(
+                Any::class.java.canonicalName to "kotlin.Any",
                 String::class.java.canonicalName to "kotlin.String",
                 java.lang.Integer::class.java.canonicalName to "kotlin.Int",
                 java.lang.Long::class.java.canonicalName to "kotlin.Long",
