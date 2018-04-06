@@ -49,7 +49,7 @@ internal fun List<KoAnnotation>.render(builder: StringBuilder, singleLine: Boole
     }
 }
 
-internal fun renderType(type: KoType): String = when (type) {
+fun renderType(type: KoType): String = when (type) {
     is KoTypeWithVariance -> {
         if (type.variance == KoTypeVariance.NONE)
             renderType(type.type)
