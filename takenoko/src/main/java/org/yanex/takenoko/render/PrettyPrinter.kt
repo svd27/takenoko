@@ -33,6 +33,7 @@ class PrettyPrinter(val configuration: PrettyPrinterConfiguration) : KoElementVi
         }
 
         e.importList.imports.forEach { append("import ").appendln(it.value) }
+        e.importList.extra.forEach { append("import ").appendln(it) }
 
         if (e.annotations.isNotEmpty() || e.packageName.isNotEmpty() || e.importList.imports.isNotEmpty()) {
             appendln()

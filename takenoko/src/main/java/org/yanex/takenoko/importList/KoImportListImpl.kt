@@ -8,6 +8,7 @@ class KoImportListImpl : KoImportList {
     }
 
     override val imports = mutableMapOf<String, String>()
+    override var extra: Set<String> = mutableSetOf()
 
     private fun import(name: String): String {
         if(name=="*") return name

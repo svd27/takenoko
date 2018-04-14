@@ -6,6 +6,7 @@ interface KoFile : KoAnnotated, KoDeclarationOwner {
 
     fun import(type: KoType): KoType = importList[type]
     fun import(type: String): KoType = importList[type]
+    fun extraImport(type: String) { importList.extra(type) }
 }
 
 fun KoElement.type(type: String): KoType = importList[type]
